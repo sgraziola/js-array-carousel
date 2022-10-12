@@ -7,6 +7,8 @@ const carousel = [
     "./assets/img/05.webp"
 ];
 
+//console.log(carousel.length);
+
 // Seleziono l'elemento della DOM dove inserire le immagini
 const carouselEl = document.querySelector(".col-10");
 
@@ -37,11 +39,16 @@ upBtnEl.addEventListener("click", function(){
     //selezione img con indice = 0 = activeImg perchè è la prima
     const mainImg = carouselImagesElements[activeImg];
     //console.log(mainImg, mainImg.classList);
-
+    
     //allora rimuovo classe active dalla img active
     mainImg.classList.remove("active");
     //incremento activeImg
     activeImg++;
+    //Bonus: infiniteLoop
+    if (activeImg > carousel.length - 1){
+        activeImg = 0; 
+    //console.log(activeImg);  
+    };
     //quindi assegno classe active a nextImg
     const nextImg = carouselImagesElements[activeImg];
     nextImg.classList.add("active");
@@ -54,9 +61,15 @@ downBtnEl.addEventListener("click", function(){
     const mainImg = carouselImagesElements[activeImg];
     //allora rimuovo classe active dalla img active
     mainImg.classList.remove("active");
-    //incremento activeImg
+    //decremento activeImg
     activeImg--;
     //quindi assegno classe active a nextImg
+    //console.log(activeImg);
+    //Bonus: infiniteLoop
+    if (activeImg < 0){
+        activeImg = carousel.length - 1; 
+    //console.log(activeImg);  
+    };
     const nextImg = carouselImagesElements[activeImg];
     nextImg.classList.add("active");
 })
